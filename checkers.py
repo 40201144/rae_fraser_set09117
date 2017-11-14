@@ -1,3 +1,4 @@
+from enum import Enum
 CLEAR = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 GRID_HEIGHT = 8
 GRID_WIDTH = 8
@@ -26,83 +27,33 @@ def init_grid():
 
 def main():
     """ Entry point """
-    CLEAR()
-    print(PY-CHECKERS)
-    value_packafe = dict([("board", init_grid()), ("turn_count", 1), ("cur_town", PLAYERS.white)])
-    while True:
-        move(value_package)
+    print("PY-CHECKERS")
+    value_package = dict([("board", init_grid()),("cur_turn", PLAYERS.White)])
+    board = init_grid()
+    for i in range(8):
+        move(value_package, board)
+        print_board(board)
+        break
     
-def print_board(board)
-
-    print("         A B C D E F G H\n")
-    for i in range(GRID_HEIGHT):
-        print(i, "   |" end="")
-        for j in range (GRID_WIDTH):
-            current_cell = board[i][j]
-            print (current_cell + "|", end="")
+def print_board(board):
+    print("\n      A B C D E F G H")
+    for i in range(8):
+        print(i, "   |", end="")
+        for j in range (8):
+            print (board[i][j] + "|", end="")
         print("")
     print("")
 
-
-def check_move_legality(board, tuples)
-    return True
-
-
-def transform_response_into_tuples(response)
-
-    match = re.findall("^([0-9][A-H]){1}$", response)
-    l_val1 = ord(match[0][0]) - 48
-    l_val2 = ord(match[1][0]) - 48
-    r_val1 = ord(match[0][1]) - 65
-    r_val2 = ord(match[1][1]) - 65
-    return ((l_val1, r_val1), (l_val2, r_val2))
-
-
-def check_response_syntax
-
-    return False if re.match("^([0-9][A-H]){2}$", response) == None else True
-
-
-def interpret_response
-
-    if check_response_syntax(response):
-        tuples = transform_response_into_tuples(response)
-        if check_move_legality(board, tuples):
-            return True
-        else:
-            print("Syntax error")
-        return False
-
-
-def move(value_package)
-    print("Turn : ", value_package["turn_count"])
+def move(value_package, board):
     if value_package["cur_turn"] == PLAYERS.White:
-        print("White's turn :\n")
-        print_board(value_package["board"])
+        print("White's turn:\n")
+        print_board(board)
         while True:
             print("Enter movement :", end="")
-            if interpret_response["cur_turn"] = PLAYERS.Black
-            value_package["turn_count"] += 1
-            break
+            print_board(board)
+            return move(value_package, board)
     else:
         print("Black's turn:\n")
         value_package["cur_turn"] = PLAYERS.White
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+main()
